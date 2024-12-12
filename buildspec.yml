@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      # Logging in to AWS ECR
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 730335542465.dkr.ecr.us-east-1.amazonaws.com)
+      
+      # Build the Docker image
+      - echo Building the Docker image...
+      - docker build -t flask-app .
+
+      # Tag the Docker image with the ECR repository URL
+      - echo Tagging the Docker image...
+      - docker tag flask-app:latest 730335542465.dkr.ecr.us-east-1.amazonaws.com/flask-app:latest
+      
+      # Push the Docker image to Amazon ECR
+      - echo Pushing the Docker image to ECR...
+      - docker push 730335542465.dkr.ecr.us-east-1.amazonaws.com/flask-app:latest
+
+artifacts:
+  files:
+    - '**/*'
