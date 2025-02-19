@@ -1,7 +1,6 @@
 **This project contains the necessary files to deploy a Flask application on Google Cloud Platform (GCP) using Terraform and a CI/CD pipeline.**
 GCP Deployment
 
-This project contains the necessary files to deploy a Flask application on Google Cloud Platform (GCP) using Terraform and a CI/CD pipeline.
 
 Project Structure
 
